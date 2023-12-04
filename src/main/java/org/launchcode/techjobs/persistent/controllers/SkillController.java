@@ -49,7 +49,7 @@ public class SkillController {
         if (optskill.isPresent()) {
             Skill skill = (Skill) optskill.get();
             model.addAttribute("skill", skill);
-            return "skills/view";
+            return "employers/view";
         } else {
             return "redirect:../";
         }
