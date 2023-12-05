@@ -23,13 +23,14 @@ import java.util.Optional;
 @Controller
 public class HomeController {
     @Autowired
-EmployerRepository employerRepository;
+    EmployerRepository employerRepository;
     @Autowired
-    JobRepository jobRepository;
+    JobRepository   jobRepository;
     @Autowired
     SkillRepository skillRepository;
     @RequestMapping("/")
     public String index(Model model) {
+        model.addAttribute("title", "My Jobs");
 
         model.addAttribute("jobs", jobRepository.findAll());
 
@@ -60,11 +61,15 @@ EmployerRepository employerRepository;
         List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
         newJob.setSkills(skillObjs);
         jobRepository.save(newJob);
-        return "index";
+        return "redirect:";
+
     }
+
 
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
+        model.addAttribute("job",jobRepository.findById(jobId).get());
+
             return "view";
     }
 
