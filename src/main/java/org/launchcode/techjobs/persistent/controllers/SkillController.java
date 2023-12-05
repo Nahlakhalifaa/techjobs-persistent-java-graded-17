@@ -23,7 +23,7 @@ public class SkillController {
         model.addAttribute(new Skill());
         return "skills/add";
     }
-    @GetMapping
+    @GetMapping("/")
     public String index( Model model){
         model.addAttribute("title", "All skills");
         model.addAttribute("skills",skillRepository.findAll());
